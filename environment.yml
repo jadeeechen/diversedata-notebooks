@@ -1,0 +1,12 @@
+name: diversedata-notebooks
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - pip
+  - pip:
+    - diversedata
+    - jupyterlab
+    - r-base>=4.2          # the R interpreter
+    - r-essentials         # R kernel + common packages
+    - notebook
