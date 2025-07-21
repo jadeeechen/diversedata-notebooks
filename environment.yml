@@ -3,10 +3,10 @@ channels:
   - conda-forge
 dependencies:
   - python>=3.8
+  - notebook
+  - jupyterlab
+  - r-base>=4.2         # the R interpreter
+  - r-essentials        # common R packages + kernel
   - pip
   - pip:
-    - diversedata
-    - jupyterlab
-    - r-base>=4.2          # the R interpreter
-    - r-essentials         # R kernel + common packages
-    - notebook
+    - diversedata       # Python package from PyPI/GitHub
