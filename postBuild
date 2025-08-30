@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export DEBIAN_FRONTEND=noninteractive
 
 echo "installing pak"
 R -q -e 'install.packages("pak", repos="https://cloud.r-project.org")'
 
-echo "installing system requirements for Ubuntu 22.04"
-# this queries the sysreqs database and runs apt-get to install everything needed
-R -q -e 'pak::local_system_requirements(root=".", distribution="ubuntu", release="22.04", execute=TRUE)'
+echo "installing system requirements (auto-detected for this image)"
+R -q -e 'sr <- pak::pkg_sysreqs("local::.", dependencies = TRUE); if (length(sr$install_scripts)) system(paste(sr$install_scripts, collapse = " && "))'
 
 echo "installing renv and restoring the R library"
 R -q -e 'install.packages("renv", repos="https://cloud.r-project.org"); renv::restore()'
