@@ -1,12 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
-export DEBIAN_FRONTEND=noninteractive
+echo "Installing renv..."
+R -e 'install.packages("renv", repos = "https://cloud.r-project.org")'
 
-echo "installing pak"
-R -q -e 'install.packages("pak", repos="https://cloud.r-project.org")'
-
-echo "installing system requirements (auto-detected for this image)"
-R -q -e 'sr <- pak::pkg_sysreqs("local::.", dependencies = TRUE); if (length(sr$install_scripts)) system(paste(sr$install_scripts, collapse = " && "))'
-
-echo "installing renv and restoring the R library"
-R -q -e 'install.packages("renv", repos="https://cloud.r-project.org"); renv::restore()'
+echo "Restoring R environment with renv..."
+R -e 'renv::restore()'
