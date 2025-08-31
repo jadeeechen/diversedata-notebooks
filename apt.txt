@@ -3,3 +3,7 @@ libproj22
 proj-data
 libudunits2-0
 libudunits2-dev
+libgdal30
+libgdal-dev
+libgeos-dev
+libgeos-c1v5
